@@ -23,6 +23,8 @@ register.post('/', async (req, res) => {
         res.status(200).send(savedUser);
         //"Sucessfully registered!!!"
 
+        //redirect to logged in feed
+
     } catch (error) {
         res.status(400).send(error);
     }
