@@ -15,4 +15,4 @@ app.use("/register", register);
 
 
 const PORT = 4000;
-app.listen(process.env.PORT || PORT, () => console.log('Listening on port'));
+app.listen(process.env.PORT || PORT, () => console.log(`Listening on port ${PORT}`));
