@@ -25,7 +25,7 @@ login.post("/", async (req, res) => {
     const token = foundUser.generateAuthToken();
     res.send(token);
   } catch (error) {
-    res.send(error);
+    res.status(400).send(error);
   }
 });
 export default login;

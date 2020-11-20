@@ -32,8 +32,6 @@ register.post("/", async (req, res) => {
       .status(200)
       .send(_.pick(savedUser, ["name", "email"]));
     //"Sucessfully registered!!!"
-
-    //redirect to logged in feed
   } catch (error) {
     res.status(400).send(error);
   }
