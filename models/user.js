@@ -21,6 +21,10 @@ const userSchema = mongoose.Schema({
     minlength: 5,
     maxlength: 255,
   },
+  theme: {
+    type: String,
+    default: "light",
+  },
   likes: {
     type: Array,
   },
@@ -28,14 +32,18 @@ const userSchema = mongoose.Schema({
     type: Array,
   },
 });
+const foodItem = Joi.object().keys({
+  name: Joi.string(),
+  calories: Joi.number(),
+});
 const dietObject = Joi.object().keys({
-  earlyMorning: Joi.string(),
-  midMorning: Joi.string(),
-  breakfast: Joi.string(),
-  lunch: Joi.string(),
-  evening: Joi.string(),
-  dinner: Joi.string(),
-  postDinner: Joi.string(),
+  earlyMorning: Joi.array().items(foodItem),
+  midMorning: Joi.array().items(foodItem),
+  breakfast: Joi.array().items(foodItem),
+  lunch: Joi.array().items(foodItem),
+  evening: Joi.array().items(foodItem),
+  dinner: Joi.array().items(foodItem),
+  postDinner: Joi.array().items(foodItem),
 });
 const joiSchema = Joi.object({
   name: Joi.string().min(5).max(50),
@@ -43,6 +51,7 @@ const joiSchema = Joi.object({
   password: Joi.string().min(5).max(255).required(),
   likes: Joi.array(),
   diet: Joi.array().items(dietObject),
+  favouriteRecipes: Joi.array(),
 });
 userSchema.methods.generateAuthToken = function () {
   const token = jwt.sign(

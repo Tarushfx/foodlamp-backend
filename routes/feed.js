@@ -5,8 +5,9 @@ import user from "../models/user.js";
 const feed = express.Router();
 const User = mongoose.model("users", user.userSchema);
 feed.get("/", async (req, res) => {
+  // console.log(req.query);
   try {
-    const email = req.body.email;
+    const email = req.query.email;
     let foundUser = await User.findOne({ email });
     if (foundUser) {
       res.send(foundUser);

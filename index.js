@@ -5,6 +5,7 @@ import feed from "./routes/feed.js";
 import login from "./routes/login.js";
 import register from "./routes/register.js";
 import like from "./routes/like.js";
+import me from "./routes/me.js";
 
 const app = express();
 mongoose.connect("mongodb://localhost/foodlamp", {
@@ -17,6 +18,7 @@ app.use("/feed", feed);
 app.use("/login", login);
 app.use("/register", register);
 app.use("/like", like);
+app.use("/me", me);
 
 const PORT = 4000;
 app.listen(process.env.PORT || PORT, () =>
