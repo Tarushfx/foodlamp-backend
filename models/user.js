@@ -36,7 +36,7 @@ const foodItem = Joi.object().keys({
   name: Joi.string(),
   calories: Joi.number(),
 });
-const dietObject = Joi.object().keys({
+const diet = Joi.object().keys({
   earlyMorning: Joi.array().items(foodItem),
   midMorning: Joi.array().items(foodItem),
   breakfast: Joi.array().items(foodItem),
@@ -44,6 +44,10 @@ const dietObject = Joi.object().keys({
   evening: Joi.array().items(foodItem),
   dinner: Joi.array().items(foodItem),
   postDinner: Joi.array().items(foodItem),
+});
+const dietObject = Joi.object().keys({
+  date: Joi.date(),
+  diet: diet,
 });
 const joiSchema = Joi.object({
   name: Joi.string().min(5).max(50),
