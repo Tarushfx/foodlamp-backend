@@ -6,6 +6,7 @@ import login from "./routes/login.js";
 import register from "./routes/register.js";
 import like from "./routes/like.js";
 import me from "./routes/me.js";
+import diet from "./routes/diet.js";
 
 const app = express();
 mongoose.connect("mongodb://localhost/foodlamp", {
@@ -17,6 +18,7 @@ app.use(cors());
 app.use("/feed", feed);
 app.use("/login", login);
 app.use("/register", register);
+app.use("/diet", diet);
 app.use("/like", like);
 app.use("/me", me);
 
