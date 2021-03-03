@@ -7,7 +7,7 @@ const User = mongoose.model("users", user.userSchema);
 import pkg from "lodash";
 const { isUndefined } = pkg;
 diet.post("/", async (req, res) => {
-  // console.log(req);
+  console.log(req.body);
   try {
     const { email, diet } = req.body;
     console.log(diet);
@@ -15,32 +15,11 @@ diet.post("/", async (req, res) => {
       return res.status(400).send("Diet not provided");
     let foundUser = await User.findOne({ email });
     if (foundUser) {
-      // if (foundUser.diet.length === 0) foundUser.diet.push(diet);
-      // else {
-      //   let index = 0;
-      //   while (
-      //     diet &&
-      //     diet.date &&
-      //     new Date(diet.date).getTime() >
-      //       new Date(foundUser.diet[index]).getTime()
-      //   ) {
-      //     index++;
-      //   }
-      //   if (
-      //     new Date(diet.date).getTime() !==
-      //     new Date(foundUser.diet[index + 1] || 0).getTime()
-      //   )
-      //     foundUser.diet = foundUser.diet
-      //       .slice(0, index)
-      //       .concat(diet)
-      //       .concat(foundUser.diet.slice(index));
-      //   else
-      //     foundUser.diet = foundUser.diet
-      //       .slice(0, index)
-      //       .concat(diet)
-      //       .concat(foundUser.diet.slice(index + 1));
-      // }
+      console.log(foundUser.diet);
       foundUser.diet.push(diet);
+      foundUser.diet.sort(function (a, b) {
+        return new Date(a.date).getTime() - new Date(b.date).getTime();
+      });
       await User.create(foundUser);
       res.send("Diet Saved");
     } else res.status(400);

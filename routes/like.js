@@ -22,12 +22,12 @@ like.post("/", async (req, res) => {
       return res.status(400).send("No link provided!");
     }
     let foundUser = await User.findOne({ email });
-    if (!foundUser.likes.includes(link)) {
-      foundUser.likes.push(link);
+    if (!foundUser.likes.includes(JSON.stringify(link))) {
+      foundUser.likes.push(JSON.stringify(link));
       await User.create(foundUser);
       res.send("Liked");
     } else {
-      const index = foundUser.likes.indexOf(link);
+      const index = foundUser.likes.indexOf(JSON.stringify(link));
       if (index > -1) {
         foundUser.likes.splice(index, 1);
       }

@@ -19,7 +19,7 @@ login.post("/", async (req, res) => {
       userObject.password,
       foundUser.password
     );
-    // console.log(validPassword);
+    // console.log(validPassword, userObject.password, foundUser.password);
     if (!validPassword)
       return res.status(400).send("Invalid email or password.");
 
