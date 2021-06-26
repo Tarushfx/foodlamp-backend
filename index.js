@@ -1,6 +1,8 @@
 import express from "express";
 import mongoose from "mongoose";
 import cors from "cors";
+import helmet from 'helmet';
+import compression from 'compression';
 import feed from "./routes/feed.js";
 import login from "./routes/login.js";
 import register from "./routes/register.js";
@@ -15,6 +17,8 @@ mongoose.connect("mongodb://localhost/foodlamp", {
 });
 app.use(express.json());
 app.use(cors());
+app.use(helmet());
+app.use(compression());
 app.use("/feed", feed);
 app.use("/login", login);
 app.use("/register", register);
