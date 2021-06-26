@@ -1,8 +1,8 @@
 import express from "express";
 import mongoose from "mongoose";
 import cors from "cors";
-import helmet from 'helmet';
-import compression from 'compression';
+import helmet from "helmet";
+import compression from "compression";
 import feed from "./routes/feed.js";
 import login from "./routes/login.js";
 import register from "./routes/register.js";
@@ -13,10 +13,14 @@ import dotenv from "dotenv";
 dotenv.config();
 const app = express();
 console.log(process.env.DB);
-mongoose.connect(process.env.DB, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-},()=>console.log("connected"));
+mongoose.connect(
+  process.env.DB,
+  {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  },
+  () => console.log("connected")
+);
 app.use(express.json());
 app.use(cors());
 app.use(helmet());
@@ -28,11 +32,10 @@ app.use("/diet", diet);
 app.use("/like", like);
 app.use("/me", me);
 
-app.get("/",(req,res)=> console.log("working logs"));
-
-
+app.get("/", (req, res) => {
+  console.log("working logs");
+  return res.sendStatus(200);
+});
 
 const PORT = process.env.PORT || 4000;
-app.listen(PORT, () =>
-  console.log(`Listening on port ${PORT}`)
-);
+app.listen(PORT, () => console.log(`Listening on port ${PORT}`));
