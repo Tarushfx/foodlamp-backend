@@ -21,10 +21,10 @@ diet.post("/", async (req, res) => {
         return new Date(a.date).getTime() - new Date(b.date).getTime();
       });
       await User.create(foundUser);
-      return res.send("Diet Saved");
-    } else return res.sendStatus(400);
+      res.send("Diet Saved");
+    } else res.status(400);
   } catch (error) {
-    return console.log(error.message);
+    console.log(error.message);
   }
 });
 export default diet;

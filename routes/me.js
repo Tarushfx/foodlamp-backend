@@ -12,10 +12,10 @@ me.post("/theme", async (req, res) => {
     if (foundUser) {
       foundUser.theme = theme;
       await User.create(foundUser);
-      return res.status(200).send("Theme Changed");
-    } else return res.status(400);
+      res.status(200).send("Theme Changed");
+    } else res.status(400);
   } catch (ex) {
-    return console.log(ex.message);
+    console.log(ex.message);
   }
 });
 me.post("/profile", async (req, res) => {
@@ -37,10 +37,10 @@ me.post("/profile", async (req, res) => {
       }
 
       await User.create(foundUser);
-      return res.status(200).send("User Updated");
-    } else return res.status(400);
+      res.status(200).send("User Updated");
+    } else res.status(400);
   } catch (ex) {
-    return console.log(ex.message);
+    console.log(ex.message);
   }
 });
 export default me;

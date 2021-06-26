@@ -25,17 +25,17 @@ like.post("/", async (req, res) => {
     if (!foundUser.likes.includes(JSON.stringify(link))) {
       foundUser.likes.push(JSON.stringify(link));
       await User.create(foundUser);
-      return res.send("Liked");
+      res.send("Liked");
     } else {
       const index = foundUser.likes.indexOf(JSON.stringify(link));
       if (index > -1) {
         foundUser.likes.splice(index, 1);
       }
       await User.create(foundUser);
-      return res.send("Unliked");
+      res.send("Unliked");
     }
   } catch (error) {
-    return console.log(error.message);
+    console.log(error.message);
   }
 });
 

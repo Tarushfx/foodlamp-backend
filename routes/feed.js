@@ -10,10 +10,10 @@ feed.get("/", async (req, res) => {
     const email = req.query.email;
     let foundUser = await User.findOne({ email });
     if (foundUser) {
-      return res.sendStatus(foundUser);
+      res.send(foundUser);
     } else res.status(400);
   } catch (error) {
-    return console.log(error.message);
+    console.log(error.message);
   }
 });
 export default feed;
