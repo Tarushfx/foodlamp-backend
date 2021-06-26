@@ -28,7 +28,7 @@ app.use("/diet", diet);
 app.use("/like", like);
 app.use("/me", me);
 
-const PORT = 4000;
-app.listen(process.env.PORT || PORT, () =>
+const PORT = process.env.PORT ||  4000;
+app.listen(PORT, () =>
   console.log(`Listening on port ${PORT}`)
 );
