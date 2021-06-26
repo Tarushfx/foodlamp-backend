@@ -32,8 +32,12 @@ app.use("/diet", diet);
 app.use("/like", like);
 app.use("/me", me);
 //testing
-app.get("/", (req, res) => {
+import user from "./models/user.js";
+const User = mongoose.model("users", user.userSchema);
+app.get("/", async (req, res) => {
   console.log("working logs");
+  const found=await User.find();
+  console.log(found);
   return res.sendStatus(200);
 });
 
