@@ -28,6 +28,10 @@ app.use("/diet", diet);
 app.use("/like", like);
 app.use("/me", me);
 
+app.get((req,res)=> console.log("working logs"));
+
+
+
 const PORT = process.env.PORT ||  4000;
 app.listen(PORT, () =>
   console.log(`Listening on port ${PORT}`)
