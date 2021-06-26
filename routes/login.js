@@ -24,9 +24,9 @@ login.post("/", async (req, res) => {
       return res.status(400).send("Invalid email or password.");
 
     const token = foundUser.generateAuthToken();
-    res.send(token);
+    return res.sendStatus(token);
   } catch (error) {
-    res.status(400).send(error);
+    return res.status(400).send(error);
   }
 });
 export default login;

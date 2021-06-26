@@ -26,14 +26,14 @@ register.post("/", async (req, res) => {
 
     const savedUser = await User.create(userObject);
     const token = savedUser.generateAuthToken();
-    res
+    return res
       .header("x-auth-token", token)
       .header("access-control-expose-headers", "x-auth-token")
       .status(200)
       .send(_.pick(savedUser, ["name", "email"]));
     //"Sucessfully registered!!!"
   } catch (error) {
-    res.status(400).send(error);
+    return res.status(400).send(error);
   }
 });
 export default register;

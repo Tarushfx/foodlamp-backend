@@ -31,7 +31,7 @@ app.use("/register", register);
 app.use("/diet", diet);
 app.use("/like", like);
 app.use("/me", me);
-
+//testing
 app.get("/", (req, res) => {
   console.log("working logs");
   return res.sendStatus(200);
