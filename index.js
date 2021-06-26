@@ -9,12 +9,14 @@ import register from "./routes/register.js";
 import like from "./routes/like.js";
 import me from "./routes/me.js";
 import diet from "./routes/diet.js";
-
+import dotenv from "dotenv";
+dotenv.config();
 const app = express();
+console.log(process.env.DB);
 mongoose.connect(process.env.DB, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
-});
+},()=>console.log("connected"));
 app.use(express.json());
 app.use(cors());
 app.use(helmet());
