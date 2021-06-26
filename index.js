@@ -11,7 +11,7 @@ import me from "./routes/me.js";
 import diet from "./routes/diet.js";
 
 const app = express();
-mongoose.connect("mongodb://localhost/foodlamp", {
+mongoose.connect(process.env.DB, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
