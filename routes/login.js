@@ -8,13 +8,15 @@ const User = mongoose.model("users", user.userSchema);
 
 login.post("/", async (req, res) => {
   try {
+    // console.log(req.body);
     const { error, value: userObject } = user.joiSchema.validate(req.body);
     //Invalid form of data
+    // console.log(error, userObject);
     if (error) return res.status(400).send(error.details[0].message);
 
     let foundUser = await User.findOne({ email: userObject.email });
     if (!foundUser) return res.status(400).send("Invalid email or password.");
-
+    // console.log(foundUser);
     const validPassword = await bcrypt.compare(
       userObject.password,
       foundUser.password
